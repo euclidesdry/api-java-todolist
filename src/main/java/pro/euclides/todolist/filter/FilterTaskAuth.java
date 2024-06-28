@@ -26,31 +26,36 @@ public class FilterTaskAuth extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-        var authorization = request.getHeader("Authorization");
-        var authEncoded = authorization.substring("Basic".length()).trim();
-        byte[] authDecoded = Base64.getDecoder().decode(authEncoded);
-        String authDecodedString = new String(authDecoded);
+        var servletPath = request.getServletPath();
 
-        String[] credentials = authDecodedString.split(":");
-        String username = credentials[0];
-        String password = credentials[1];
+        if (servletPath.equals("/tasks/")) {
 
-        var user = this.userRepository.findByUsername(username);
+            var authorization = request.getHeader("Authorization");
+            var authEncoded = authorization.substring("Basic".length()).trim();
+            byte[] authDecoded = Base64.getDecoder().decode(authEncoded);
+            String authDecodedString = new String(authDecoded);
 
-        if (user == null) {
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "No user found");
-            return;
-        } else {
-            var passwordVerify = BCrypt.verifyer().verify(password.toCharArray(), user.getPassword());
-            if (passwordVerify.verified) {
-                request.setAttribute("user", user);
-            } else {
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Wrong password");
+            String[] credentials = authDecodedString.split(":");
+            String username = credentials[0];
+            String password = credentials[1];
+
+            var user = this.userRepository.findByUsername(username);
+
+            if (user == null) {
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
                 return;
+            } else {
+                var passwordVerify = BCrypt.verifyer().verify(password.toCharArray(), user.getPassword());
+                if (passwordVerify.verified) {
+                    request.setAttribute("user", user);
+                } else {
+                    response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+                    return;
+                }
             }
+        } else {
+            filterChain.doFilter(request, response);
         }
-
-        filterChain.doFilter(request, response);
     }
 
 }

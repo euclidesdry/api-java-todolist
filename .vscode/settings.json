@@ -1,7 +1,7 @@
 {
   "java.compile.nullAnalysis.mode": "automatic",
   "explorer.compactFolders": true,
-  "cSpell.words": ["Servlet", "todolist"],
+  "cSpell.words": ["servlet", "Servlet", "todolist"],
   "conventionalCommits.scopes": [
     "app",
     "models",
