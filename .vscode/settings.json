@@ -2,6 +2,6 @@
   "java.compile.nullAnalysis.mode": "automatic",
   "explorer.compactFolders": true,
   "cSpell.words": ["todolist"],
-  "conventionalCommits.scopes": ["app", "models"],
+  "conventionalCommits.scopes": ["app", "models", "repositories"],
   "java.configuration.updateBuildConfiguration": "interactive"
 }
