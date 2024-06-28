@@ -6,7 +6,7 @@
 
 - [x] Should be possible to Register a new User
 - [x] Should be possible to Login with the User
-- [ ] Should be possible to Validate a User
+- [x] Should be possible to Validate a User
 - [x] Should be possible to Add a Task
 - [x] Should be possible to Update a Task entirely or partially
 - [x] Should be possible to List all Tasks
