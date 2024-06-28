@@ -1,12 +1,13 @@
 {
   "java.compile.nullAnalysis.mode": "automatic",
   "explorer.compactFolders": true,
-  "cSpell.words": ["todolist"],
+  "cSpell.words": ["Servlet", "todolist"],
   "conventionalCommits.scopes": [
     "app",
     "models",
     "repositories",
-    "controllers"
+    "controllers",
+    "filters"
   ],
   "java.configuration.updateBuildConfiguration": "interactive"
 }
