@@ -17,6 +17,7 @@
 - [x] Should not be possible to create a Task with an date in the past from today
 - [x] Should not be possible to create a Task with Start Date in the future than End Date
 - [x] Should not be possible to create a Task with Start Date equal to End Date
+- [x] Should not be possible for a User to update a Task that does not belong to him
 - [x] A Task can only be possible to be manipulated by an authenticated User
 
 ## Non-Functional Requirements
